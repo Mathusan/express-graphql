@@ -20,7 +20,7 @@ export const auth = async (req : Request , res : Response , next : NextFunction)
     }
 
     try {
-        const user = await <any>jwt.verify(token , `${config.refreshTokenKey}`);
+        const user = await <any>jwt.verify(token , `${config.accessTokenKey}`);
 
         (req as CustomRequest).user  =  await userFind(user._id);
 

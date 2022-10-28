@@ -20,7 +20,7 @@ export const signUp = async (userInputs: any) => {
 
         } else {
 
-            return {err : "Email already registered"}
+            return {error : "Email already registered"}
         }
         
     } catch (error) {
@@ -42,13 +42,11 @@ export const logIn = async (userInputs : any) =>{
                          const token = await generateToken({email : existingUser.email, _id:existingUser._id})   
                          return {id: existingUser._id,  token}
                     }else {
-                        return {err: "Incorrect Password"}
+                        return {error: "Incorrect Password"}
                     }
     
-    
-    
                 }else {
-                    return {err: " User not found "}
+                    return {error: " User not found "}
                 }
             } catch (error) {
                 return {error: error}
@@ -56,11 +54,13 @@ export const logIn = async (userInputs : any) =>{
 
 }
 
+
+
 export const userFind = async (id : any) => {
     try {
         const user = await findUserById({id})
         return user
     } catch (error) {
-        
+        return {error:error}
     }
 }

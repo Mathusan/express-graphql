@@ -5,11 +5,9 @@ import config from '../../config';
  
 
 
-const salt = config.salt
-
 
 export const generatePassword = async (password : any) => {
-        return await bcrypt.hash(password, `${salt}` );
+        return await bcrypt.hash(password, Number(config.salt) );
 };
 
 
@@ -25,12 +23,3 @@ export const generateRefreshToken = async (payload : any) =>{
         return await jwt.sign(payload, "refreshkeysecret", {expiresIn :'2d'} )
 }
 
-
-
-module.exports.FormateData = (data :any) => {
-        if(data){
-            return { data }
-        }else{
-            throw new Error('Data Not found!')
-        }
-    }
