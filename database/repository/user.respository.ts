@@ -12,7 +12,6 @@ export const   createUser  = async ({name,email,password} : DocumentDefinition<I
             })
             
             const userResult = await user.save()
-
             return userResult
 
 

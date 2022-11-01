@@ -5,7 +5,7 @@ export const signUp = async (userInputs: any) => {
     const { name,email, password} = userInputs
 
     try {
-         const checkExistingUser = await findUser({email})
+        const checkExistingUser = await findUser({email})
 
         if(!checkExistingUser){ 
 

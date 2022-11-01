@@ -1,4 +1,4 @@
-import express , {Express, request, response} from 'express';
+import express , {Express, request, Request,Response} from 'express';
 import {graphqlHTTP} from 'express-graphql';
 
 import cors from 'cors';
@@ -8,7 +8,7 @@ import connection from './database/connection';
 
 import config from './config';
 import { schema } from './graphql/typeDefs';
-//import { resolver } from './graphql/resolvers';
+import { resolver } from './graphql/resolvers';
 
 
 const app : Express = express();
@@ -23,7 +23,9 @@ app.use(
     '/graphql',
     graphqlHTTP({
         schema : schema,
-        graphiql : true
+        rootValue: resolver,
+        graphiql : true,
+        //context: (request)
     })
 )
 
